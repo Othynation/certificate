@@ -1,0 +1,6 @@
+Certificate System - 
+Technology - 
+PHP PDO Prepared Statements & OOPS concept 
+MYSQL DATABASE & ajax 
+Regquired Version 
+Support PHP 7.4 or PHP 8 + Versions

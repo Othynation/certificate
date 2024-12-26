@@ -1,0 +1,75 @@
+.logo{
+      height:80px; width:105px; 
+    }
+    
+    .main-heading
+    {
+      font-size:50px !important;color:red !important; text-shadow: 2px 0 red !important;
+font-weight:bold !important; text-align:left;
+    }
+    .sub-heading{
+      font-weight:bold !important;
+    }
+   .hrcls{
+
+        border: 1px solid red;
+       
+        height: 5px;
+        background: red;
+        margin-left: -17px;
+        margin-right: -17px;
+    }
+   .orange{
+    color:#FF781B !important;
+   }
+   .line{
+  border-bottom: 1px dotted #000;
+    text-decoration: none;
+   }
+.user_image
+{
+    height: 140px;
+    width: 140px;
+     border: 3px solid red;
+    border-radius: 5px;
+}
+.ws
+{
+    word-spacing: 2px !important;
+}
+.user_sign
+{
+    width: 130px;
+    height: 130px;
+    text-align: center;
+}
+.form-box
+    {
+      -webkit-box-shadow: -1px 1px 5px 1px rgba(91,88,102,1);
+-moz-box-shadow: -1px 1px 5px 1px rgba(91,88,102,1);
+box-shadow: -1px 1px 5px 1px rgba(91,88,102,1);
+padding: 40px ;
+padding-bottom: 20px ;
+    }
+    .form_area
+    {
+        padding-bottom: 60px ;
+    }
+.success
+{
+    font-size:20px ;
+} 
+
+ .text-red
+                    {
+                        color: red;
+                        font-size: 16px;
+                    }
+                    .printable { display:none; }
+@media only print {
+    .container { display:none !important; } <-- This is the wrapper container for all of the site data
+    .printable { display:block !important; } <-- This is my added printable container with a message about not printing the page
+}
+                    
+.html2canvas-container { width: 1350px !important; height: 1350px !important; }
+

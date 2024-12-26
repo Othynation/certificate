@@ -1,0 +1,13 @@
+Certificate System - 
+Technology - 
+PHP PDO Prepared Statements & OOPS concept 
+MYSQL DATABASE & ajax 
+Required Version 
+Support PHP 7.4 or PHP 8.1 Versions
+https://zachsolution.com/contact
+Installation 
+1. Import database from database folder. 
+2. Edit includes/conscrmg.php file and set your database credentials . 
+3. Run your website . 
+
+

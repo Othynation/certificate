@@ -1,0 +1,182 @@
+      .logo{
+        height:200px; width:200px
+    }
+    .main-container{
+        border: 0px solid red;
+        -webkit-box-shadow: -1px 2px 8px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 2px 8px 0px rgba(0,0,0,0.75);
+box-shadow: -1px 2px 8px 0px rgba(0,0,0,0.75);
+    }
+    
+    .sub-heading{
+      font-weight:bold !important;
+    }
+   .hrcls{
+
+        border: 1px solid red;
+        height: 5px;
+        background: red;
+        margin-left: -17px;
+        margin-right: -17px;
+    }
+   .orange{
+    color:#FF781B !important;
+   }
+   .line{
+  border-bottom: 1px dotted #000;
+    text-decoration: none;
+   }
+.user_image
+{
+    height: 150px;
+    width: 150px;
+}
+
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.image1 {
+     height: 150px;
+    width: auto;
+  position: relative;
+  top: 0;
+  left: 0;
+   border: 3px solid red;
+    border-radius: 5px;
+}
+.image2 {
+     height: 100px;
+    width: auto;
+  position: absolute;
+  top: 90px;
+  left: 75px;
+
+}
+
+
+.ws
+{
+    word-spacing: 20px !important;
+}
+.user_sign
+{
+    width: 200px;
+    height: 130px;
+}
+.header
+{
+    background: red;
+
+}
+.main-header{
+    background: red;
+   
+}
+.main-heading
+    {
+      font-size:24px !important;color:#fff !important; 
+font-weight:900 !important; text-align:left;
+font-family: 'Open Sans', sans-serif;
+padding-top: 10px;
+padding-bottom: 10px;
+    }
+    .main-heading2
+    {
+      font-size:20px !important;color:#fff !important;
+font-weight:bold !important; text-align:left;
+text-align: center;
+    }
+
+
+    .header2
+    {
+    background: red
+    }
+    .sub-heading3{
+      font-weight:bold !important;
+      color: #221A89;
+        font-size: 19px;
+    }
+    .sub-heading2{
+      font-weight:bold !important;
+      font-size: 19px;
+
+    }
+
+    .bsub-heading2{
+      font-weight:bold !important;
+      font-size: 16px;
+
+    }
+    .bsub-heading3{
+      font-weight:bold !important;
+      color: #221A89;
+    }
+
+    .bottom-heading2
+    {
+         letter-spacing: 30px;
+      font-size:50px;color:#fff ; 
+font-weight:900 !important;
+font-family: 'Open Sans', sans-serif;
+text-align: center;
+padding-left: 26px !important;
+padding-top: 9px !important; 
+height: 57px !important;
+
+    }
+    .spacing {
+  letter-spacing: .4em;
+}
+
+    .back-title
+    {
+    color: red;
+    text-align: center;
+  font-weight:bold !important;
+    text-decoration: underline;
+    margin-top:-3.5px !important;
+    }
+    span.vertical-line{
+      width: 0px; /* Use only border style */
+      height: 0px;
+      float: left; 
+     padding-top: 10px;
+     display: inline;
+      white-space: -0.125em; 
+      border: 1px solid #fff;
+      overflow: hidden;
+       /* This is default border style for <hr> tag */
+
+    }
+    .text-red
+                    {
+                        color: red;
+                        font-size: 16px;
+                    }
+                    .form-box
+    {
+      -webkit-box-shadow: -1px 1px 5px 1px rgba(91,88,102,1);
+-moz-box-shadow: -1px 1px 5px 1px rgba(91,88,102,1);
+box-shadow: -1px 1px 5px 1px rgba(91,88,102,1);
+padding: 40px ;
+padding-bottom: 20px ;
+    }
+    .form_area
+    {
+        padding-bottom: 60px ;
+    }
+.success
+{
+    font-size:20px ;
+} 
+.printable { display:none; }
+@media only print {
+    .container { display:none !important; } <-- This is the wrapper container for all of the site data
+    .printable { display:block !important; } <-- This is my added printable container with a message about not printing the page
+}
+
+
+.html2canvas-container { width: 1350px !important; height: 1350px !important; }

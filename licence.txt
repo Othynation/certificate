@@ -1,0 +1,69 @@
+﻿/**Licence** / 
+ZACH SOLUTION - Design, Multimedia & Solution Informatique
+/**********  Website Title :- Certification - Atlantique Formation  **************/
+/*********** Website URL :- www.atlantique.ma  *********/
+/***********  Developed By  : ZACH SOLUTION   **********/
+/***********  Licence :- Intern software *************/
+	
+This application source comes under the commercial software license. You can use by At antique Formation only. 
+ The software is licensed, not sold. Under this agreement, we grant you the right to install and run one instance of the software on your 
+ device (the licensed device), for use by one person at a time, so long as you comply with all the terms of this agreement. Updating or upgrading
+ from non-genuine software with software from ZACH SOLUTION or authorized sources does not 
+ make your original version or the updated/upgraded version genuine, and in that situation, you do not have a license to use the software.
+ 
+ Restrictions. 
+  The device manufacturer or installer and ZACH SOLUTION reserve all rights (such as rights under intellectual property laws) 
+  not expressly granted in this agreement. For example, this license does not give you any right to, and you may not:
+(i)      use or virtualize features of the software separately;
+(ii)     You do not have permission to publish and share a copy of this software. 
+(iii)    You do have permission to transfer data to other. Use for commercial  purpose only.
+(iv)    workaround any technical restrictions or limitations in the software;
+(v)     use the software as server software, for commercial hosting, make the software available for 
+
+ Copyright Policy – 
+Copyright policies are absolutely simple. If you use the software source for commercial purpose then no copyright claim will be made. Copyright can be claimed if you publish or share software source on the Internet or sell it.
+Kindly do not publish and share this source code. Use for common commercial purpose only. 
+
+
+FAQ ------ 
+
+What is ZACH SOLUTION ?   ****************
+
+ZACH SOLUTION is a creative and development agency. We develop a kind of software and support for development. 
+We also support on QA forum. 
+
+Tell me about your services?  *********************
+ We provide many services list below - 
+Website Development
+
+Mobile App Development
+
+Windows App Development
+
+Live Training
+
+SEO
+
+Digital Marketing
+
+
+How to contact?  **************************************
+You can use our links - 
+ 
+ Website Contact Form 
+ https://zachsolution.com/contact
+  
+  Social Link- 
+ https://www.facebook.com/zachsolution/
+ 
+ Item licence has been created from URL - 
+https://zachsolution.com/item/certificate-system-in-php-website
+ 
+ 
+ Useful Links - 
+ ZACH SOLUTION QA Forum 
+ https://zachsolution.com/
+ 
+ ZACH SOLUTION Shop Page 
+ https://zachsolution.com/
+ 

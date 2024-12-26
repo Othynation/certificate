@@ -1,0 +1,429 @@
+<?php Class User extends Database { 
+	 private $dbConnection;
+ function __construct($db)
+ {
+  $this->dbConnection = $db;
+ }
+  public function admin_log_check(){
+        if(isset($_SESSION['ts_admin_sess_log']) && $_SESSION['ts_admin_sess_log'] == true){
+            return true;
+        } }
+        public function logout(){
+        	unset($_SESSION['ts_admin_sess_log']); 
+            return true;
+        }
+         public function login_ts_val($login_var,$password)
+          { 
+             $sql= "SELECT id,password from pts_gtw_users WHERE (username=:username OR email=:email)"; 
+              $stmt = $this->dbConnection->prepare($sql);
+               $stmt->bindParam(':username', $login_var, PDO::PARAM_STR);
+               $stmt->bindParam(':email', $login_var, PDO::PARAM_STR);
+            $stmt->execute();
+             $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if(@count($row)>0){ 
+               if(@password_verify($password,$row['password'])){
+           $_SESSION["ts_admin_sess_log"]="1"; 
+             $_SESSION["user_id"]= $row['id'];
+             return true; 
+          }
+          else 
+         {
+         	  return false; 
+         }
+  }
+   else 
+         {
+         	  return false; 
+         }
+}
+public function count_by_id($table,$col,$id)
+{ 
+ $sql= "SELECT count(*) FROM $table WHERE $col=:id"; 
+     $stmt = $this->dbConnection->prepare($sql);
+     $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+    $stmt->execute();
+        $number_of_rows = $stmt->fetchColumn(); 
+        return $number_of_rows;  
+}
+
+public function ac_validate($fname,$lname,$username,$email,$password,$passwordConfirm,$oldusername,$oldemail,$action) 
+        { 
+     $fname=$this->sanitize($fname,'string');
+     $lname=$this->sanitize($lname,'string');
+               $username=$this->sanitize($username,'string');
+               $password=$this->sanitize($password,'string');
+               $username=$this->sanitize($username,'string');
+                   $email=$this->sanitize($email,'email');
+               $passwordConfirm=$this->sanitize($passwordConfirm,'string');
+        if(strlen($fname)<3){
+            $error[] = 'Please enter First name using 3 charaters atleast.';
+        }
+    
+          if(strlen($lname) <3){
+            $error[] = 'Please enter Last name using 3 charaters atleast.';
+        }
+        
+        if(strlen($lname)>20){
+            $error[] = 'Last Name: Max length 20 Characters Not allowed';
+        }
+         if(strlen($username) <4){
+            $error[] = 'Please enter Username using 4 charaters atleast.';
+        }
+        
+        if(strlen($username)>20){
+            $error[] = 'UserName: Max length 20 Characters Not allowed';
+        }
+        
+          if(!preg_match("/^^[^0-9][a-z0-9]+([_-]?[a-z0-9])*$/", $username)){
+            $error[] = 'Invalid Entry for Username. Enter lowercase letters without any space and No number at the start- Eg - myusername, okuniqueuser or myusername123';
+        } 
+              if($email ==''){
+            $error[] = 'Please enter the email address.';
+        
+        }
+
+         if($oldusername!=$username){
+            $count=$this->count_by_id('pts_gtw_users','username',$username);
+      if($count> 0) {
+$error[] = 'Username  already exists.';
+   
+             }
+         }
+ if($oldemail!=$email){
+            $count=$this->count_by_id('pts_gtw_users','email',$email);
+      if ($count > 0) {
+$error[] = 'Email already exists.';
+             }
+         }
+
+if($action=='edit'){
+        if(strlen($password) > 0){
+            if($password ==''){
+                $error[] = 'Please enter the password.';
+            }
+            if($passwordConfirm ==''){
+                $error[] = 'Please confirm the password.';
+            }
+            if(strlen($password)<6){
+            $error[] = 'The password should be 6 characters long.';
+        }
+         if(strlen($password)>20){
+            $error[] = 'Password: Max length 20 Characters Not allowed';
+        }
+            if($password != $passwordConfirm){
+                $error[] = 'Passwords do not match.';
+            }
+
+
+        }
+    }
+    elseif($action=='add'){
+
+        if($password ==''){
+                $error[] = 'Please enter the password.';
+            }
+            if($passwordConfirm ==''){
+                $error[] = 'Please confirm the password.';
+            }
+
+            if(strlen($password)<6){
+            $error[] = 'The password should be 6 characters long.';
+        }
+         if(strlen($password)>20){
+            $error[] = 'Password: Max length 20 Characters Not allowed';
+        }
+            if($password != $passwordConfirm){
+                $error[] = 'Passwords do not match.';
+            }
+    }
+     if(isset($error))
+           {
+             return $error ;  
+           }
+           else 
+            { 
+    return $arrayName = [];
+            } 
+
+
+}
+
+public function iac_validate($fname,$lname,$username,$email,$password,$passwordConfirm,$oldusername,$oldemail,$action) 
+        { 
+     $fname=$this->sanitize($fname,'string');
+     $lname=$this->sanitize($lname,'string');
+               $username=$this->sanitize($username,'string');
+               $password=$this->sanitize($password,'string');
+               $username=$this->sanitize($username,'string');
+                   $email=$this->sanitize($email,'email');
+               $passwordConfirm=$this->sanitize($passwordConfirm,'string');
+        if(strlen($fname)<3){
+            $error[] = 'Please enter First name using 3 charaters atleast.';
+        }
+    
+          if(strlen($lname) <3){
+            $error[] = 'Please enter Last name using 3 charaters atleast.';
+        }
+        
+        if(strlen($lname)>20){
+            $error[] = 'Last Name: Max length 20 Characters Not allowed';
+        }
+         if(strlen($username) <4){
+            $error[] = 'Please enter Username using 4 charaters atleast.';
+        }
+        
+        if(strlen($username)>20){
+            $error[] = 'UserName: Max length 20 Characters Not allowed';
+        }
+        
+          if(!preg_match("/^^[^0-9][a-z0-9]+([_-]?[a-z0-9])*$/", $username)){
+            $error[] = 'Invalid Entry for Username. Enter lowercase letters without any space and No number at the start- Eg - myusername, okuniqueuser or myusername123';
+        } 
+              if($email ==''){
+            $error[] = 'Please enter the email address.';
+        
+        }
+
+         if($oldusername!=$username){
+            $count=$this->count_by_id('its_gtw_users','username',$username);
+      if($count> 0) {
+$error[] = 'Username  already exists.';
+   
+             }
+         }
+ if($oldemail!=$email){
+            $count=$this->count_by_id('its_gtw_users','email',$email);
+      if ($count > 0) {
+$error[] = 'Email already exists.';
+             }
+         }
+
+if($action=='edit'){
+        if(strlen($password) > 0){
+            if($password ==''){
+                $error[] = 'Please enter the password.';
+            }
+            if($passwordConfirm ==''){
+                $error[] = 'Please confirm the password.';
+            }
+            if(strlen($password)<6){
+            $error[] = 'The password should be 6 characters long.';
+        }
+         if(strlen($password)>20){
+            $error[] = 'Password: Max length 20 Characters Not allowed';
+        }
+            if($password != $passwordConfirm){
+                $error[] = 'Passwords do not match.';
+            }
+
+
+        }
+    }
+    elseif($action=='add'){
+
+        if($password ==''){
+                $error[] = 'Please enter the password.';
+            }
+            if($passwordConfirm ==''){
+                $error[] = 'Please confirm the password.';
+            }
+
+            if(strlen($password)<6){
+            $error[] = 'The password should be 6 characters long.';
+        }
+         if(strlen($password)>20){
+            $error[] = 'Password: Max length 20 Characters Not allowed';
+        }
+            if($password != $passwordConfirm){
+                $error[] = 'Passwords do not match.';
+            }
+    }
+     if(isset($error))
+           {
+             return $error ;  
+           }
+           else 
+            { 
+    return $arrayName = [];
+            } 
+
+
+}
+public function iinsert_user($fname,$lname,$username,$email,$password) 
+        { 
+     $fname=$this->sanitize($fname,'string');
+     $lname=$this->sanitize($lname,'string');
+               $username=$this->sanitize($username,'string');
+               $password=$this->sanitize($password,'string');
+               $username=$this->sanitize($username,'string');
+                   $email=$this->sanitize($email,'email');
+                        $date=$this->get_date();            
+  $options = array("cost"=>4);
+$hashedpassword= password_hash($password,PASSWORD_BCRYPT,$options);
+                             $sql = "INSERT INTO  its_gtw_users(fname,lname,username,email,password,date) VALUES(:fname,:lname,:username,:email,:password,:created_date)";
+                                  $stmt = $this->dbConnection->prepare($sql);
+            $stmt->bindParam(':fname',$fname, PDO::PARAM_STR);
+              $stmt->bindParam(':lname',$lname, PDO::PARAM_STR);
+             $stmt->bindParam(':username',$username, PDO::PARAM_STR);
+             $stmt->bindParam(':email',$email, PDO::PARAM_STR);
+             $stmt->bindParam(':password',$hashedpassword, PDO::PARAM_STR);
+             $stmt->bindParam(':created_date',$date, PDO::PARAM_STR);
+            $res=$stmt->execute();
+            if($res)
+
+{
+    return true;
+}
+else
+{
+    return false; 
+}
+}
+
+public function insert_user($fname,$lname,$username,$email,$password) 
+        { 
+     $fname=$this->sanitize($fname,'string');
+     $lname=$this->sanitize($lname,'string');
+               $username=$this->sanitize($username,'string');
+               $password=$this->sanitize($password,'string');
+               $username=$this->sanitize($username,'string');
+                   $email=$this->sanitize($email,'email');
+                        $date=$this->get_date();            
+  $options = array("cost"=>4);
+$hashedpassword= password_hash($password,PASSWORD_BCRYPT,$options);
+                             $sql = "INSERT INTO  pts_gtw_users(fname,lname,username,email,password,date) VALUES(:fname,:lname,:username,:email,:password,:created_date)";
+                                  $stmt = $this->dbConnection->prepare($sql);
+            $stmt->bindParam(':fname',$fname, PDO::PARAM_STR);
+              $stmt->bindParam(':lname',$lname, PDO::PARAM_STR);
+             $stmt->bindParam(':username',$username, PDO::PARAM_STR);
+             $stmt->bindParam(':email',$email, PDO::PARAM_STR);
+             $stmt->bindParam(':password',$hashedpassword, PDO::PARAM_STR);
+             $stmt->bindParam(':created_date',$date, PDO::PARAM_STR);
+            $res=$stmt->execute();
+            if($res)
+
+{
+    return true;
+}
+else
+{
+    return false; 
+}
+}
+
+public function iupdate_user($fname,$lname,$username,$email,$password,$id) 
+        { 
+     $fname=$this->sanitize($fname,'string');
+     $lname=$this->sanitize($lname,'string');
+               $username=$this->sanitize($username,'string');
+               $password=$this->sanitize($password,'string');
+               $username=$this->sanitize($username,'string');
+                   $email=$this->sanitize($email,'email');
+                             if($password!= "")
+                             {                              
+              $sql= "UPDATE its_gtw_users SET password= :password WHERE id=:id"; 
+              $stmt = $this->dbConnection->prepare($sql);
+                $options = array("cost"=>4);
+$hashedpassword= password_hash($password,PASSWORD_BCRYPT,$options);
+               $stmt->bindParam(':password',$hashedpassword, PDO::PARAM_STR);
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+                             }
+                              $sql= "UPDATE its_gtw_users SET fname= :fname,lname= :lname,username= :username,email= :email WHERE id=:id"; 
+              $stmt = $this->dbConnection->prepare($sql);
+               $stmt->bindParam(':fname',$fname, PDO::PARAM_STR);
+              $stmt->bindParam(':lname',$lname, PDO::PARAM_STR);
+             $stmt->bindParam(':username',$username, PDO::PARAM_STR);
+             $stmt->bindParam(':email',$email, PDO::PARAM_STR);
+           $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+                            
+          
+                        if($stmt)
+     { 
+
+return true; 
+     }
+     else 
+          { 
+    return false;
+          }
+
+
+}
+
+
+public function update_user($fname,$lname,$username,$email,$password,$id) 
+        { 
+     $fname=$this->sanitize($fname,'string');
+     $lname=$this->sanitize($lname,'string');
+               $username=$this->sanitize($username,'string');
+               $password=$this->sanitize($password,'string');
+               $username=$this->sanitize($username,'string');
+                   $email=$this->sanitize($email,'email');
+                             if($password!= "")
+                             {                              
+              $sql= "UPDATE pts_gtw_users SET password= :password WHERE id=:id"; 
+              $stmt = $this->dbConnection->prepare($sql);
+                $options = array("cost"=>4);
+$hashedpassword= password_hash($password,PASSWORD_BCRYPT,$options);
+               $stmt->bindParam(':password',$hashedpassword, PDO::PARAM_STR);
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+                             }
+                              $sql= "UPDATE pts_gtw_users SET fname= :fname,lname= :lname,username= :username,email= :email WHERE id=:id"; 
+              $stmt = $this->dbConnection->prepare($sql);
+               $stmt->bindParam(':fname',$fname, PDO::PARAM_STR);
+              $stmt->bindParam(':lname',$lname, PDO::PARAM_STR);
+             $stmt->bindParam(':username',$username, PDO::PARAM_STR);
+             $stmt->bindParam(':email',$email, PDO::PARAM_STR);
+           $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+                            
+          
+                        if($stmt)
+     { 
+
+return true; 
+     }
+     else 
+          { 
+    return false;
+          }
+
+
+}
+
+
+ public function user_forgot_check($login_var)
+    {
+      $sql= "SELECT count(*) from pts_gtw_users WHERE (username=:username OR email=:email)";
+     
+              $stmt = $this->dbConnection->prepare($sql);
+               $stmt->bindParam(':username', $login_var, PDO::PARAM_STR);
+               $stmt->bindParam(':email', $login_var, PDO::PARAM_STR);
+            $stmt->execute();
+              $number_of_rows = $stmt->fetchColumn(); 
+            if($number_of_rows>0){ 
+               $error=Null; 
+           }
+
+           else{
+            $error[]='No user found'; 
+             return $error;
+           }
+    }
+     public function get_user_details($login_var)
+    {
+        $sql= "SELECT id,email from pts_gtw_users WHERE (username=:username OR email=:email)"; 
+              $stmt = $this->dbConnection->prepare($sql);
+     $stmt->bindParam(':username', $login_var, PDO::PARAM_STR);
+               $stmt->bindParam(':email', $login_var, PDO::PARAM_STR);
+            $stmt->execute();
+             $rows = $stmt->fetch();
+             return $rows;
+    }
+
+
+}
+	?> 
